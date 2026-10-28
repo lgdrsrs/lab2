@@ -43,11 +43,12 @@ def search_by_author(books, author):
 
 
 def write_references(books, filename):
-    defined_books = []
+    defined_books = {}
     for book in books:
         if get_year(book) is not None and book[3] != "":
-            defined_books.append(book)
-    books_reference = random.sample(defined_books, 20)
+            key = (book[1], book[3])
+            defined_books[key] = book
+    books_reference = random.sample(list(defined_books.values()), 20)
     with open(filename, "w", encoding="utf-8") as f:
         for i, book in enumerate(books_reference, start=1):
             year = get_year(book)
