@@ -95,6 +95,7 @@ def main():
     books = read_books("books.csv")
     long_titles_qty = count_long_titles(books)
     print("Названий длиннее 30 символов:", long_titles_qty)
+    print()
 
     while True:
         author = input("Автор (Enter - выход): ").strip()
@@ -105,19 +106,27 @@ def main():
             print("Ничего не найдено")
         for i, book in enumerate(found_books, start=1):
             print(f"{i}. {book[1]} - {book[3]}, {get_year(book)}")
+    print()
 
     char_codes = get_char_codes("currency.xml")
     codes_text = ", ".join(char_codes)
     print(f"Коды валют номиналами 100 или 10 "
-          f"({len(char_codes)}): {codes_text}")
+          f"({len(char_codes)} шт.): {codes_text}")
+    print()
 
     write_references(books, "references.txt")
     print("Файл с подборкой 20 книг успешно сохранен")
+    print()
 
-    unique_tags = get_unique_tags(books)
-    tags_text = ";\n".join(unique_tags)
-    print(f"Различных тегов: {len(unique_tags)}; Все уникальные теги: "
-          f"{tags_text}")
+    unique_tags = list(get_unique_tags(books))
+    tags_text = ";\n".join(unique_tags[:10])
+    print(f"Различных тегов: {len(unique_tags)}; Первые 10 уникальных тегов:")
+    print(f"{tags_text}")
+    print("Осталось тегов:", len(unique_tags) - 10)
+    print_others = input("Вывести остальные? Y/N ")
+    if print_others == "Y":
+        print(";\n".join(unique_tags[11:]))
+    print()
 
     top_books = get_top_books(books)
     print("Топ книг по количеству выдач:")
