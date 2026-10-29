@@ -130,7 +130,7 @@ def main():
     print("Осталось тегов:", len(unique_tags) - 10)
     print_others = input("Вывести остальные? Y/N ")
     if print_others == "Y":
-        print(";\n".join(unique_tags[11:]))
+        print(";\n".join(unique_tags[10:]))
     print()
 
     print("TASK 6")
