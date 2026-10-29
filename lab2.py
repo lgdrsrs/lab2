@@ -92,11 +92,13 @@ def get_top_books(books, n=20):
 
 
 def main():
+    print("TASK 1")
     books = read_books("books.csv")
     long_titles_qty = count_long_titles(books)
     print("Названий длиннее 30 символов:", long_titles_qty)
     print()
 
+    print("TASK 2")
     while True:
         author = input("Автор (Enter - выход): ").strip()
         if not author:
@@ -108,16 +110,19 @@ def main():
             print(f"{i}. {book[1]} - {book[3]}, {get_year(book)}")
     print()
 
+    print("TASK 3")
+    write_references(books, "references.txt")
+    print("Файл с подборкой 20 книг успешно сохранен")
+    print()
+
+    print("TASK 4")
     char_codes = get_char_codes("currency.xml")
     codes_text = ", ".join(char_codes)
     print(f"Коды валют номиналами 100 или 10 "
           f"({len(char_codes)} шт.): {codes_text}")
     print()
 
-    write_references(books, "references.txt")
-    print("Файл с подборкой 20 книг успешно сохранен")
-    print()
-
+    print("TASK 5")
     unique_tags = list(get_unique_tags(books))
     tags_text = ";\n".join(unique_tags[:10])
     print(f"Различных тегов: {len(unique_tags)}; Первые 10 уникальных тегов:")
@@ -128,6 +133,7 @@ def main():
         print(";\n".join(unique_tags[11:]))
     print()
 
+    print("TASK 6")
     top_books = get_top_books(books)
     print("Топ книг по количеству выдач:")
     for i, ((title, author), total) in enumerate(top_books, start=1):
